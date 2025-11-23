@@ -209,7 +209,7 @@
 
         .auth-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 2.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -279,6 +279,50 @@
             to {
                 opacity: 1;
             }
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+            background: var(--accent);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -382,6 +426,58 @@
                 <a href="capybara-register.html" class="btn btn-primary">✍️ Зарегистрироваться</a>
                 <a href="capybara-login.html" class="btn btn-secondary">🔓 Войти</a>
                 <a href="capybara-community.html" class="btn btn-primary">🐹 Посмотреть сообщество</a>
+            </div>
+        </div>
+
+        <!-- Gallery -->
+        <h2 style="color: var(--primary); margin: 2rem 0 1rem 0; text-align: center;">🖼️ Галерея капибар</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&h=400&fit=crop" alt="Капибара в воде">
+                <div class="gallery-caption">
+                    <strong>Капибара в воде</strong>
+                    <p>Любит плавать и отдыхать</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&h=400&fit=crop" alt="Капибара на траве">
+                <div class="gallery-caption">
+                    <strong>Капибара на траве</strong>
+                    <p>Травоядное животное</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop" alt="Портрет капибары">
+                <div class="gallery-caption">
+                    <strong>Портрет капибары</strong>
+                    <p>Дружелюбное животное</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1610768764270-d4a2e9c4d10f?w=400&h=400&fit=crop" alt="Капибара в стаде">
+                <div class="gallery-caption">
+                    <strong>Капибара в группе</strong>
+                    <p>Социальные животные</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1576505016048-940f5aeb799a?w=400&h=400&fit=crop" alt="Капибара ест">
+                <div class="gallery-caption">
+                    <strong>Капибара ест траву</strong>
+                    <p>Едят по 3.5 кг травы в день</p>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1550258987-920a2eae7d59?w=400&h=400&fit=crop" alt="Капибара отдыхает">
+                <div class="gallery-caption">
+                    <strong>Капибара отдыхает</strong>
+                    <p>До 16 часов отдыхают в день</p>
+                </div>
             </div>
         </div>
 
