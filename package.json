@@ -1,0 +1,22 @@
+{
+  "name": "capybara-community",
+  "version": "1.0.0",
+  "description": "Полнофункциональное веб-сообщество любителей капибар",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 8000",
+    "serve": "npx http-server . -p 8000 -o",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "capybara",
+    "community",
+    "social",
+    "website"
+  ],
+  "author": "GitHub",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

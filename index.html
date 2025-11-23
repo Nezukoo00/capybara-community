@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Капибара Сообщество - Главная</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #d4a574 0%, #f5deb3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #8b7355;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #999;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: block;
+            padding: 15px 20px;
+            background: #8b7355;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            background: #7a6248;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+
+        a.big {
+            grid-column: 1 / -1;
+            background: #4caf50;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        a.big:hover {
+            background: #45a049;
+        }
+
+        .info {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .info strong {
+            color: #8b7355;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🐹</div>
+        <h1>Капибара Сообщество</h1>
+        <p class="subtitle">Дружелюбное онлайн-сообщество любителей капибар</p>
+
+        <div class="links">
+            <a href="capybara-community.html">🏠 Главная</a>
+            <a href="capybara-about.html">ℹ️ О капибарах</a>
+            <a href="capybara-login.html">🔓 Вход</a>
+            <a href="capybara-register.html">✍️ Регистрация</a>
+            <a href="capybara-profile.html">👤 Профиль</a>
+            <a href="README.md" target="_blank">📖 Гайд</a>
+            <a href="capybara-community.html" class="big">🚀 Начать сейчас!</a>
+        </div>
+
+        <div class="info">
+            <strong>📋 Основные функции:</strong><br>
+            ✅ Регистрация и авторизация<br>
+            ✅ Публикация комментариев<br>
+            ✅ Просмотр профиля<br>
+            ✅ Удаление своих комментариев<br>
+            ✅ Адаптивный дизайн<br>
+            ✅ Локальное хранилище данных
+        </div>
+    </div>
+</body>
+</html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>GemDev - Development Company with Capybara Spirit</title>
+        <meta
+            name="description"
+            content="GemDev creates digital solutions with capybara-level zen and community spirit. Expert development, testing, and support services for businesses of all sizes."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="logo.png" alt="G" class="logo-image">
+                    <span class="logo-text">emDev</span>
+                </div>
+
+                <div class="nav-menu" id="nav-menu">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#clients" class="nav-link">Clients</a>
+                    <a href="#how-we-work" class="nav-link">How We Work</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#careers" class="nav-link">Careers</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle-label">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </label>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-logo">
+                            <img src="logo.png" alt="G" class="hero-logo-image floating">
+                            <h1 class="hero-title">
+                                emDev
+                                <span class="hero-subtitle"
+                                    >Development Company</span
+                                >
+                            </h1>
+                            <p class="hero-description">
+                                Smooth as a capybara's zen, powerful as their
+                                community spirit. We create digital solutions
+                                with the perfect balance of calm and capability.
+                            </p>
+                        </div>
+
+                        <div class="hero-buttons">
+                            <a href="#contact" class="btn btn-primary">
+                                Start Your Project
+                            </a>
+                            <a href="#clients" class="btn btn-secondary">
+                                View Our Work
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                        <div class="hero-circle floating">
+                            <div class="hero-inner-circle">
+                                <svg
+                                    class="code-icon"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <polyline
+                                        points="16,18 22,12 16,6"
+                                    ></polyline>
+                                    <polyline points="8,6 2,12 8,18"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="paw-badge">🐾</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="organic-divider"></div>
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Our Services</h2>
+                    <p class="section-description">
+                        Like capybaras who excel in both water and land, we
+                        master every aspect of development
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card fade-in cat-puff-1">
+                        <div class="service-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <polyline points="16,18 22,12 16,6"></polyline>
+                                <polyline points="8,6 2,12 8,18"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">🐾 Development</h3>
+                        <p class="service-description">
+                            Custom web and mobile applications built with modern
+                            technologies and capybara-level attention to detail.
+                        </p>
+                        <ul class="service-features">
+                            <li>• Frontend Development</li>
+                            <li>• Backend Solutions</li>
+                            <li>• Mobile Apps</li>
+                            <li>• API Integration</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card fade-in cat-puff-2">
+                        <div class="service-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path d="m8 2 1.88 1.88"></path>
+                                <path d="M14.12 3.88 16 2"></path>
+                                <path
+                                    d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1"
+                                ></path>
+                                <path
+                                    d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"
+                                ></path>
+                                <path d="M12 20v-9"></path>
+                                <path d="M6.53 9C4.6 8.8 3 7.1 3 5"></path>
+                                <path d="M6 13H2"></path>
+                                <path d="M3 21c0-2.1 1.7-3.9 3.8-4"></path>
+                                <path d="M20.97 5c0 2.1-1.6 3.8-3.5 4"></path>
+                                <path d="M22 13h-4"></path>
+                                <path d="M17.2 17c2.1.1 3.8 1.9 3.8 4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">🐾 Testing</h3>
+                        <p class="service-description">
+                            Thorough quality assurance ensuring your
+                            applications are as reliable as a capybara's calm
+                            demeanor.
+                        </p>
+                        <ul class="service-features">
+                            <li>• Automated Testing</li>
+                            <li>• Manual QA</li>
+                            <li>• Performance Testing</li>
+                            <li>• Security Audits</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card fade-in cat-puff-3">
+                        <div class="service-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="service-title">🐾 Support</h3>
+                        <p class="service-description">
+                            Ongoing maintenance and support with the dedication
+                            of capybaras caring for their community.
+                        </p>
+                        <ul class="service-features">
+                            <li>• 24/7 Monitoring</li>
+                            <li>• Regular Updates</li>
+                            <li>• Bug Fixes</li>
+                            <li>• Technical Consultation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section id="clients" class="clients">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Our Clients</h2>
+                    <p class="section-description">
+                        From small startups to enterprise giants, we adapt like
+                        capybaras to any environment
+                    </p>
+
+                     </div>
+
+                
+
+                <!-- Filter inputs (hidden) -->
+                <input type="radio" id="filter-all" name="client-filter" checked>
+                <input type="radio" id="filter-small" name="client-filter">
+                <input type="radio" id="filter-midsized" name="client-filter">
+                <input type="radio" id="filter-enterprise" name="client-filter">
+                
+                <!-- Filter buttons -->
+                <div class="filter-buttons">
+                    <label for="filter-all" class="filter-btn">All Clients</label>
+                    <label for="filter-small" class="filter-btn">Small Business</label>
+                    <label for="filter-midsized" class="filter-btn">Midsized Companies</label>
+                    <label for="filter-enterprise" class="filter-btn">Enterprise</label>
+                </div>
+
+                <div class="clients-grid" id="clients-grid">
+                    <!-- Small Business Cases -->
+                    <div class="client-case fade-in small-business">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-1">
+                                <span>🏪</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Local Bakery Digital Transformation</h3>
+                            <p class="case-description">Complete e-commerce solution for artisan bakery with online ordering system</p>
+                            <div class="case-tags">
+                                <span class="tag">E-commerce</span>
+                                <span class="tag">Mobile App</span>
+                                <span class="tag">Payment Integration</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">200%</span>
+                                    <span class="result-label">Sales Increase</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">500+</span>
+                                    <span class="result-label">Daily Orders</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="client-case fade-in small-business">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-2">
+                                <span>🎨</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Creative Studio Portfolio</h3>
+                            <p class="case-description">Stunning portfolio website with client gallery and booking system</p>
+                            <div class="case-tags">
+                                <span class="tag">Portfolio</span>
+                                <span class="tag">CMS</span>
+                                <span class="tag">SEO</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">150%</span>
+                                    <span class="result-label">Client Inquiries</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">95%</span>
+                                    <span class="result-label">Mobile Score</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Midsized Company Cases -->
+                    <div class="client-case fade-in midsized">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-3">
+                                <span>🏥</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Healthcare Practice Management</h3>
+                            <p class="case-description">Comprehensive patient management system with appointment scheduling</p>
+                            <div class="case-tags">
+                                <span class="tag">Healthcare</span>
+                                <span class="tag">HIPAA Compliant</span>
+                                <span class="tag">API Integration</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">60%</span>
+                                    <span class="result-label">Admin Time Saved</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">1000+</span>
+                                    <span class="result-label">Patients Managed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="client-case fade-in midsized">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-hero">
+                                <span>📊</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Financial Analytics Platform</h3>
+                            <p class="case-description">Real-time dashboard for investment tracking and portfolio management</p>
+                            <div class="case-tags">
+                                <span class="tag">FinTech</span>
+                                <span class="tag">Real-time</span>
+                                <span class="tag">Security</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">40%</span>
+                                    <span class="result-label">Faster Decisions</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">$2M+</span>
+                                    <span class="result-label">Assets Tracked</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enterprise Cases -->
+                    <div class="client-case fade-in enterprise">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-1">
+                                <span>🏭</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Manufacturing ERP Integration</h3>
+                            <p class="case-description">Enterprise-scale inventory and production management system</p>
+                            <div class="case-tags">
+                                <span class="tag">Enterprise</span>
+                                <span class="tag">ERP</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">30%</span>
+                                    <span class="result-label">Cost Reduction</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">99.9%</span>
+                                    <span class="result-label">Uptime</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="client-case fade-in enterprise">
+                        <div class="case-image">
+                            <div class="placeholder-image cat-puff-2">
+                                <span>🌐</span>
+                            </div>
+                        </div>
+                        <div class="case-content">
+                            <h3 class="case-title">Global E-commerce Platform</h3>
+                            <p class="case-description">Multi-region marketplace with advanced logistics and payment systems</p>
+                            <div class="case-tags">
+                                <span class="tag">E-commerce</span>
+                                <span class="tag">Multi-region</span>
+                                <span class="tag">Scalability</span>
+                            </div>
+                            <div class="case-results">
+                                <div class="result">
+                                    <span class="result-number">500%</span>
+                                    <span class="result-label">Transaction Growth</span>
+                                </div>
+                                <div class="result">
+                                    <span class="result-number">50+</span>
+                                    <span class="result-label">Countries</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </section>
+
+        <!-- How We Work Section -->
+        <section id="how-we-work" class="how-we-work">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">How We Work</h2>
+                    <p class="section-description">
+                        Our process flows as naturally as capybaras in their
+                        element
+                    </p>
+                </div>
+
+                <div class="steps-container">
+                    <div class="steps-grid">
+                        <div class="step fade-in">
+                            <div class="step-circle cat-puff-1">1</div>
+                            <h3 class="step-title">Discovery</h3>
+                            <p class="step-description">
+                                Understanding your needs with capybara-level
+                                patience and attention
+                            </p>
+                        </div>
+
+                        <div class="step fade-in">
+                            <div class="step-circle cat-puff-2">2</div>
+                            <h3 class="step-title">Planning</h3>
+                            <p class="step-description">
+                                Strategic roadmap creation with smooth, organic
+                                development flow
+                            </p>
+                        </div>
+
+                        <div class="step fade-in">
+                            <div class="step-circle cat-puff-3">3</div>
+                            <h3 class="step-title">Development</h3>
+                            <p class="step-description">
+                                Building with the calm focus and community
+                                spirit of capybaras
+                            </p>
+                        </div>
+
+                        <div class="step fade-in">
+                            <div class="step-circle cat-puff-hero">4</div>
+                            <h3 class="step-title">Launch</h3>
+                            <p class="step-description">
+                                Smooth deployment and ongoing support for your
+                                success
+                            </p>
+                        </div>
+                    </div>
+                    <div class="connecting-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="team">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Our Team</h2>
+                    <p class="section-description">
+                        A community of developers as harmonious as a capybara
+                        family
+                    </p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-member fade-in">
+                        <img
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+                            alt="Alex Johnson"
+                            class="member-photo"
+                        />
+                        <h3 class="member-name">Alex Johnson</h3>
+                        <p class="member-role">Lead Developer</p>
+                        <p class="member-description">
+                            Full-stack wizard with 8+ years of capybara-level
+                            zen coding
+                        </p>
+                    </div>
+
+                    <div class="team-member fade-in">
+                        <img
+                            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+                            alt="Sarah Chen"
+                            class="member-photo"
+                        />
+                        <h3 class="member-name">Sarah Chen</h3>
+                        <p class="member-role">UX Designer</p>
+                        <p class="member-description">
+                            Creates smooth user experiences with
+                            capybara-inspired intuition
+                        </p>
+                    </div>
+
+                    <div class="team-member fade-in">
+                        <img
+                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+                            alt="Mike Rodriguez"
+                            class="member-photo"
+                        />
+                        <h3 class="member-name">Mike Rodriguez</h3>
+                        <p class="member-role">Backend Developer</p>
+                        <p class="member-description">
+                            Builds robust systems with the reliability of
+                            capybara communities
+                        </p>
+                    </div>
+
+                    <div class="team-member fade-in">
+                        <img
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
+                            alt="Emma Wilson"
+                            class="member-photo"
+                        />
+                        <h3 class="member-name">Emma Wilson</h3>
+                        <p class="member-role">QA Engineer</p>
+                        <p class="member-description">
+                            Ensures quality with capybara-level attention to
+                            detail
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Careers Section -->
+        <section id="careers" class="careers">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Join Our Pack</h2>
+                    <p class="section-description">
+                        Looking for developers who share the capybara
+                        philosophy: calm, collaborative, and capable
+                    </p>
+                </div>
+
+                <div class="jobs-grid">
+                    <div class="job-card fade-in cat-puff-1">
+                        <div class="job-badges">
+                            <span class="job-badge">Full-time</span>
+                            <span class="job-badge location">Remote</span>
+                        </div>
+                        <h3 class="job-title">Senior React Developer</h3>
+                        <p class="job-description">
+                            Join our pod to create smooth, responsive web
+                            applications with the latest React technologies.
+                        </p>
+                        <ul class="job-requirements">
+                            <li>• 5+ years React experience</li>
+                            <li>• TypeScript proficiency</li>
+                            <li>• Capybara-level patience</li>
+                            <li>• Team collaboration skills</li>
+                        </ul>
+                        <label for="job-modal-react" class="btn btn-primary">
+                            Apply Now
+                        </label>
+                    </div>
+
+                    <div class="job-card fade-in cat-puff-2">
+                        <div class="job-badges">
+                            <span class="job-badge">Full-time</span>
+                            <span class="job-badge location hybrid"
+                                >Hybrid</span
+                            >
+                        </div>
+                        <h3 class="job-title">DevOps Engineer</h3>
+                        <p class="job-description">
+                            Help us maintain smooth deployment pipelines and
+                            infrastructure with capybara-like reliability.
+                        </p>
+                        <ul class="job-requirements">
+                            <li>• AWS/Azure experience</li>
+                            <li>• Docker & Kubernetes</li>
+                            <li>• CI/CD pipeline expertise</li>
+                            <li>• Problem-solving mindset</li>
+                        </ul>
+                        <label for="job-modal-devops" class="btn btn-primary">
+                            Apply Now
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Application Modals -->
+        <!-- React Developer Modal -->
+        <input type="checkbox" id="job-modal-react" class="modal-toggle">
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Apply for Senior React Developer</h3>
+                    <label for="job-modal-react" class="modal-close">&times;</label>
+                </div>
+                <form class="job-application-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="react-name">Full name *</label>
+                            <input type="text" id="react-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="react-email">Email *</label>
+                            <input type="email" id="react-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="react-phone">Phone number</label>
+                            <input type="tel" id="react-phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="react-experience">Experience (years)</label>
+                            <select id="react-experience" name="experience">
+                                <option value="">Choose</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="5-7">5-7 years</option>
+                                <option value="7+">7+ years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="react-skills">Basic skills *</label>
+                        <textarea id="react-skills" name="skills" placeholder="React, TypeScript, Node.js, etc." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="react-portfolio">Share a portfolio link/GitHub</label>
+                        <input type="url" id="react-portfolio" name="portfolio">
+                    </div>
+                    <div class="form-group">
+                        <label for="react-message">Additional information</label>
+                        <textarea id="react-message" name="message" placeholder="Tell about yourself and your experience..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <label for="job-modal-react" class="btn btn-secondary">Cancel</label>
+                        <button type="submit" class="btn btn-primary">Submit an application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- DevOps Engineer Modal -->
+        <input type="checkbox" id="job-modal-devops" class="modal-toggle">
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Apply for DevOps Engineer</h3>
+                    <label for="job-modal-devops" class="modal-close">&times;</label>
+                </div>
+                <form class="job-application-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="devops-name">Full name *</label>
+                            <input type="text" id="devops-name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="devops-email">Email *</label>
+                            <input type="email" id="devops-email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="devops-phone">Phone number</label>
+                            <input type="tel" id="devops-phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="devops-experience">Experience (years)</label>
+                            <select id="devops-experience" name="experience">
+                                <option value="">Choose</option>
+                                <option value="2-4">2-4 years</option>
+                                <option value="4-6">4-6 years</option>
+                                <option value="6+">6+ years</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="devops-skills">Basic skills *</label>
+                        <textarea id="devops-skills" name="skills" placeholder="AWS, Docker, Kubernetes, CI/CD, etc." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="devops-portfolio">Share a portfolio link/GitHub</label>
+                        <input type="url" id="devops-portfolio" name="portfolio">
+                    </div>
+                    <div class="form-group">
+                        <label for="devops-message">Additional information</label>
+                        <textarea id="devops-message" name="message" placeholder="Расскажите о своем опыте с инфраструктурой..."></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <label for="job-modal-devops" class="btn btn-secondary">Cancel</label>
+                        <button type="submit" class="btn btn-primary">Submit an application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-description">
+                        Common questions answered with capybara-level clarity
+                    </p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-item fade-in">
+                        <input type="checkbox" id="faq1" class="faq-toggle">
+                        <label for="faq1" class="faq-question">
+                            <span
+                                >What makes GemDev different from other
+                                development companies?</span
+                            >
+                            <span class="faq-icon">+</span>
+                        </label>
+                        <div class="faq-answer">
+                            <p>
+                                Like capybaras, we believe in creating harmony
+                                between all stakeholders. Our approach combines
+                                technical excellence with exceptional
+                                communication, ensuring smooth project delivery
+                                and long-term partnerships. We take the time to
+                                understand your business deeply and provide
+                                solutions that grow with you.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in">
+                        <input type="checkbox" id="faq2" class="faq-toggle">
+                        <label for="faq2" class="faq-question">
+                            <span>How long does a typical project take?</span>
+                            <span class="faq-icon">+</span>
+                        </label>
+                        <div class="faq-answer">
+                            <p>
+                                Project timelines vary based on complexity and
+                                scope. Small business websites typically take
+                                4-8 weeks, while enterprise solutions can take
+                                3-6 months. We provide detailed timelines during
+                                the planning phase and maintain transparent
+                                communication throughout the development
+                                process.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in">
+                        <input type="checkbox" id="faq3" class="faq-toggle">
+                        <label for="faq3" class="faq-question">
+                            <span
+                                >Do you provide ongoing support after
+                                launch?</span
+                            >
+                            <span class="faq-icon">+</span>
+                        </label>
+                        <div class="faq-answer">
+                            <p>
+                                Absolutely! We offer comprehensive support
+                                packages including 24/7 monitoring, regular
+                                updates, security patches, and technical
+                                consultation. Our support is like a capybara
+                                community - always there when you need us,
+                                ensuring your digital presence remains smooth
+                                and reliable.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item fade-in">
+                        <input type="checkbox" id="faq4" class="faq-toggle">
+                        <label for="faq4" class="faq-question">
+                            <span>What technologies do you specialize in?</span>
+                            <span class="faq-icon">+</span>
+                        </label>
+                        <div class="faq-answer">
+                            <p>
+                                We specialize in modern web technologies
+                                including React, Vue.js, Angular, Node.js,
+                                Python, and cloud platforms like AWS and Azure.
+                                Our technology choices are always driven by
+                                what's best for your specific project needs, not
+                                our preferences.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <h2 class="section-title text-white">Get In Touch</h2>
+                    <p class="section-description text-white">
+                        Ready to start your project? Let's chat with the calm
+                        confidence of capybaras
+                    </p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info fade-in">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                                    ></path>
+                                    <polyline
+                                        points="22,6 12,13 2,6"
+                                    ></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>hello@gemdev.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                                    ></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3>Location</h3>
+                                <p>San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form fade-in">
+                        <form id="contact-form">
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Your Name"
+                                required
+                            />
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Your Email"
+                                required
+                            />
+                            <select id="project-type" required>
+                                <option value="">Project Type</option>
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile App</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                placeholder="Tell us about your project"
+                                required
+                            ></textarea>
+                            <button type="submit" class="btn btn-primary">
+                                Send Message 🐾
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-logo">
+                            <div class="logo-circle">G</div>
+                            <span class="logo-text">GemDev</span>
+                        </div>
+                        <p>
+                            Creating digital solutions with capybara-level zen
+                            and community spirit.
+                        </p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>Services</h3>
+                        <ul>
+                            <li>Development</li>
+                            <li>Testing</li>
+                            <li>Support</li>
+                            <li>Consulting</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>Company</h3>
+                        <ul>
+                            <li>About Us</li>
+                            <li>Our Team</li>
+                            <li>Careers</li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="https://x.com/w5c9iyMiEQDVAZo" target="_blank" class="social-link" title="X (Twitter)">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="https://www.threads.net/@kartoshka283" target="_blank" class="social-link" title="Threads">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.292 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.704-1.108 0-2.081-.25-2.896-.743-.97-.585-1.316-1.532-1.05-2.88.354-1.798 1.784-2.883 3.729-2.883.632 0 1.232.086 1.768.25v2.41c-.4-.138-.84-.208-1.29-.208-.906 0-1.608.33-1.766 1.027-.063.28.031.508.315.756.426.372 1.09.555 1.741.555.906 0 1.608-.33 1.766-1.027l.442-2.244c.315-1.59.157-2.378-.473-2.364-.2.005-.402.014-.6.027-.906 0-1.608-.33-1.766-1.027-.063-.28.031-.508.315-.756.426-.372 1.09-.555 1.741-.555 1.108 0 2.081.25 2.896.743.97.585 1.316 1.532 1.05 2.88-.354 1.798-1.784 2.883-3.729 2.883-.632 0-1.232-.086-1.768-.25z"
+                                    ></path>
+                                </svg>
+                            </a>
+                            <a href="https://github.com/Nezukoo00" target="_blank" class="social-link" title="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                                    ></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map and Address Section -->
+                <div class="footer-map-section">
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.4!2d-122.4194!3d37.7749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2sus!4v1635724987234!5m2!1sen!2sus"
+                                width="100%" 
+                                height="300" 
+                                style="border:0; border-radius: 10px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="address-info">
+                            <h3>Visit Our Office</h3>
+                            <div class="address-details">
+                                <div class="address-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <span>123 Tech Street, Innovation District<br>San Francisco, CA 94105</span>
+                                </div>
+                                <div class="address-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <span>+1 (555) 123-4567</span>
+                                </div>
+                                <div class="address-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
+                                    <span>hello@gemdev.com</span>
+                                </div>
+                                <div class="address-item">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                                        <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                    </svg>
+                                    <span>Mon-Fri: 9:00 AM - 6:00 PM<br>Weekend: By appointment</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2024 GemDev. All rights reserved. Made with 🐾
+                        and capybara wisdom.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- HTML Customization Block -->
+        <div id="html-block" class="customization-block">
+            <div class="container">
+                <div class="customization-header">
+                    <h3>HTML Block - Customizable Content Area</h3>
+                    <p>This area can be customized with any HTML content</p>
+                </div>
+                <div class="html-content" id="html-content">
+                    <!-- Default content - can be replaced -->
+                    <div class="custom-widget">
+                        <h4>Custom Widget Area</h4>
+                        <p>Add your custom HTML content here. This could include:</p>
+                        <ul>
+                            <li>Custom forms or integrations</li>
+                            <li>Third-party widgets (chat, analytics, etc.)</li>
+                            <li>Special announcements or banners</li>
+                            <li>Custom promotional content</li>
+                        </ul>
+                        <div class="html-block-actions">
+                            <a href="#" class="btn btn-outline">Edit HTML Block</a>
+                            <a href="#" class="btn btn-secondary">Reset to Default</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+    </body>
+</html>
+

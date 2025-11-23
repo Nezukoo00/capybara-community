@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Капибара Сообщество</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b7355;
+            --secondary-color: #d4a574;
+            --accent-color: #f5deb3;
+            --dark-color: #3a3a3a;
+            --light-color: #faf8f3;
+            --error-color: #f44336;
+            --spacing-unit: 8px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 2);
+        }
+
+        /* Навигация */
+        .navbar {
+            background: white;
+            padding: calc(var(--spacing-unit) * 2) 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 3);
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: center;
+        }
+
+        .user-greeting {
+            font-size: 14px;
+            color: var(--dark-color);
+        }
+
+        .btn-secondary, .btn-logout {
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+        }
+
+        .btn-logout {
+            background: var(--error-color);
+            color: white;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            font-size: 14px;
+        }
+
+        .btn-logout:hover {
+            background: #da190b;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            font-size: 14px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .btn-danger:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 4);
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 768px) {
+            .profile-actions {
+                flex-direction: column;
+            }
+        }
+        .main-content {
+            padding: calc(var(--spacing-unit) * 8) 0;
+        }
+
+        .profile-header {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 6);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .profile-info {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 4);
+            align-items: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .profile-details h1 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .profile-stat {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-size: 14px;
+        }
+
+        .profile-stat strong {
+            color: var(--primary-color);
+            min-width: 150px;
+        }
+
+        /* Комментарии */
+        .comments-section {
+            margin-top: calc(var(--spacing-unit) * 8);
+        }
+
+        .comments-section h2 {
+            font-size: 28px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .comment-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .comment-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .comment-meta {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .comment-page {
+            font-size: 12px;
+            background: var(--accent-color);
+            padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1.5);
+            border-radius: 6px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .comment-delete {
+            background: var(--error-color);
+            color: white;
+            border: none;
+            padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .comment-delete:hover {
+            background: #da190b;
+        }
+
+        .comment-text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 8);
+            color: #999;
+            background: white;
+            border-radius: var(--border-radius);
+            margin-top: calc(var(--spacing-unit) * 4);
+        }
+
+        /* Футер */
+        .footer {
+            background: #3a3a3a;
+            color: white;
+            padding: calc(var(--spacing-unit) * 12) 0 calc(var(--spacing-unit) * 4);
+            margin-top: calc(var(--spacing-unit) * 12);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .footer-section h4 {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: calc(var(--spacing-unit) * 4);
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .profile-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar-container {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <div class="logo">🐹 Капибара Сообщество</div>
+            <nav class="nav-links">
+                <a href="capybara-community.html">Главная</a>
+                <a href="capybara-about.html">О капибарах</a>
+            </nav>
+            <div class="auth-buttons">
+                <span class="user-greeting">Привет, <strong id="user-name"></strong>!</span>
+                <a href="capybara-profile.html" class="btn-secondary">Профиль</a>
+                <button onclick="logout()" class="btn-logout">Выход</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Профиль пользователя -->
+            <section class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar" id="profile-avatar">К</div>
+                    <div class="profile-details">
+                        <h1 id="profile-username">Имя пользователя</h1>
+                        <div class="profile-stat">
+                            <strong>Email:</strong>
+                            <span id="profile-email">email@example.com</span>
+                        </div>
+                        <div class="profile-stat">
+                            <strong>Дата регистрации:</strong>
+                            <span id="profile-join-date">2025-01-01</span>
+                        </div>
+                        <div class="profile-stat">
+                            <strong>Комментариев:</strong>
+                            <span id="profile-comment-count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button onclick="deleteAccount()" class="btn-danger">🗑️ Удалить аккаунт</button>
+                </div>
+            </section>
+
+            <!-- Комментарии пользователя -->
+            <section class="comments-section" id="comments-section">
+                <h2>Мои комментарии</h2>
+                <div class="comments-list" id="comments-list"></div>
+                <div class="empty-message" id="empty-message" style="display: none;">
+                    У вас ещё нет комментариев. <a href="capybara-community.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Начните обсуждение!</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h4>О нас</h4>
+                <p>Сообщество любителей капибар - место, где встречаются единомышленники.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Ссылки</h4>
+                <ul>
+                    <li><a href="capybara-community.html" style="color: white; text-decoration: none;">Главная</a></li>
+                    <li><a href="capybara-about.html" style="color: white; text-decoration: none;">О капибарах</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p>Свяжитесь с нами для вопросов!</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Капибара Сообщество. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="capybara-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!isLoggedIn()) {
+                window.location.href = 'capybara-login.html';
+                return;
+            }
+
+            const currentUser = getCurrentUser();
+            document.getElementById('user-name').textContent = currentUser.username;
+            document.getElementById('profile-username').textContent = currentUser.username;
+            document.getElementById('profile-email').textContent = currentUser.email;
+            document.getElementById('profile-avatar').textContent = currentUser.username.charAt(0).toUpperCase();
+
+            // Форматирование даты
+            const joinDate = new Date(currentUser.joinDate);
+            document.getElementById('profile-join-date').textContent = joinDate.toLocaleDateString('ru-RU');
+
+            // Загрузка комментариев пользователя
+            loadUserComments(currentUser.id);
+        });
+
+        function loadUserComments(userId) {
+            const allComments = getAllComments();
+            const userComments = allComments.filter(c => c.userId === userId);
+
+            document.getElementById('profile-comment-count').textContent = userComments.length;
+
+            const commentsList = document.getElementById('comments-list');
+            const emptyMessage = document.getElementById('empty-message');
+
+            if (userComments.length === 0) {
+                commentsList.innerHTML = '';
+                emptyMessage.style.display = 'block';
+                return;
+            }
+
+            emptyMessage.style.display = 'none';
+            commentsList.innerHTML = userComments.map(comment => `
+                <div class="comment-card">
+                    <div class="comment-header">
+                        <div style="flex: 1;">
+                            <div class="comment-meta">
+                                ${new Date(comment.date).toLocaleString('ru-RU')}
+                                <span class="comment-page">На странице: ${comment.page === 'home' ? 'Главная' : 'О капибарах'}</span>
+                            </div>
+                        </div>
+                        <button class="comment-delete" onclick="deleteComment('${comment.id}')">Удалить</button>
+                    </div>
+                    <div class="comment-text">${escapeHtml(comment.text)}</div>
+                </div>
+            `).join('');
+        }
+
+        function deleteComment(commentId) {
+            if (!confirm('Вы уверены, что хотите удалить этот комментарий?')) return;
+
+            removeComment(commentId);
+            const currentUser = getCurrentUser();
+            loadUserComments(currentUser.id);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

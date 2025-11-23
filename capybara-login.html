@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход - Капибара Сообщество</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b7355;
+            --secondary-color: #d4a574;
+            --accent-color: #f5deb3;
+            --dark-color: #3a3a3a;
+            --light-color: #faf8f3;
+            --error-color: #f44336;
+            --spacing-unit: 8px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: calc(var(--spacing-unit) * 2);
+        }
+
+        .login-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 400px;
+            padding: calc(var(--spacing-unit) * 6);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .login-header p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        label {
+            display: block;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 12px;
+            margin-top: calc(var(--spacing-unit) * 0.5);
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2.5);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 15px;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .submit-btn:hover {
+            background: #7a6248;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-footer {
+            text-align: center;
+            padding-top: calc(var(--spacing-unit) * 3);
+            border-top: 1px solid #eee;
+        }
+
+        .login-footer p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <a href="capybara-community.html" class="back-link">← На главную</a>
+
+        <div class="login-header">
+            <div class="logo">🐹</div>
+            <h1>Вход</h1>
+            <p>Добро пожаловать обратно в сообщество</p>
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required placeholder="ваш@email.com">
+                <div class="error-message" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" required placeholder="Введите пароль">
+                <div class="error-message" id="password-error"></div>
+            </div>
+
+            <div class="error-message" id="form-error"></div>
+
+            <button type="submit" class="submit-btn">Войти</button>
+        </form>
+
+        <div class="login-footer">
+            <p>Нет аккаунта?</p>
+            <a href="capybara-register.html">Зарегистрироваться</a>
+        </div>
+    </div>
+
+    <script src="capybara-script.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Очистка ошибок
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            // Валидация
+            if (!email) {
+                document.getElementById('email-error').textContent = 'Email обязателен';
+                document.getElementById('email-error').style.display = 'block';
+                return;
+            }
+
+            if (!password) {
+                document.getElementById('password-error').textContent = 'Пароль обязателен';
+                document.getElementById('password-error').style.display = 'block';
+                return;
+            }
+
+            // Попытка входа
+            if (login(email, password)) {
+                window.location.href = 'capybara-community.html';
+            } else {
+                document.getElementById('form-error').textContent = 'Неверный email или пароль';
+                document.getElementById('form-error').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

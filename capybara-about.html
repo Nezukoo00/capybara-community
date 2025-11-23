@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О капибарах - Капибара Сообщество</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #8b7355;
+            --secondary-color: #d4a574;
+            --accent-color: #f5deb3;
+            --dark-color: #3a3a3a;
+            --light-color: #faf8f3;
+            --success-color: #4caf50;
+            --error-color: #f44336;
+            --spacing-unit: 8px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 2);
+        }
+
+        /* Навигация */
+        .navbar {
+            background: white;
+            padding: calc(var(--spacing-unit) * 2) 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 3);
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: center;
+        }
+
+        .user-greeting {
+            font-size: 14px;
+            color: var(--dark-color);
+        }
+
+        /* Кнопки */
+        .btn-primary, .btn-secondary, .btn-logout {
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #7a6248;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-color);
+        }
+
+        .btn-logout {
+            background: #f44336;
+            color: white;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            font-size: 14px;
+        }
+
+        /* Контент */
+        .page-header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: calc(var(--spacing-unit) * 12) 0;
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .page-header h1 {
+            font-size: 44px;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .facts-section {
+            margin-bottom: calc(var(--spacing-unit) * 12);
+        }
+
+        .facts-section h2 {
+            font-size: 32px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 8);
+        }
+
+        .fact-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+
+        .fact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .fact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 18px;
+        }
+
+        .fact-card p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .gallery-section {
+            margin-bottom: calc(var(--spacing-unit) * 12);
+        }
+
+        .gallery-section h2 {
+            font-size: 32px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: calc(var(--spacing-unit) * 3);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            aspect-ratio: 1;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Комментарии */
+        .comments-section {
+            background: white;
+            padding: calc(var(--spacing-unit) * 8) 0;
+            margin-top: calc(var(--spacing-unit) * 8);
+            border-top: 1px solid #eee;
+        }
+
+        .comments-section h2 {
+            font-size: 28px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+        }
+
+        .comment-form {
+            background: #f9f7f4;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        textarea {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+
+        .form-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: calc(var(--spacing-unit) * 2);
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 3);
+        }
+
+        .comment-card {
+            background: #f9f7f4;
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .comment-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .comment-user-info {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .comment-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .comment-delete {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .comment-delete:hover {
+            background: #da190b;
+        }
+
+        .comment-text {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Футер */
+        .footer {
+            background: #3a3a3a;
+            color: white;
+            padding: calc(var(--spacing-unit) * 12) 0 calc(var(--spacing-unit) * 4);
+            margin-top: calc(var(--spacing-unit) * 12);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+
+        .footer-section h4 {
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            color: var(--secondary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: calc(var(--spacing-unit) * 4);
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-wrap: wrap;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .facts-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <header class="navbar">
+        <div class="container navbar-container">
+            <div class="logo">🐹 Капибара Сообщество</div>
+            <nav class="nav-links">
+                <a href="capybara-community.html">Главная</a>
+                <a href="capybara-about.html" class="active">О капибарах</a>
+            </nav>
+            <div class="auth-buttons">
+                <div id="auth-guest">
+                    <a href="capybara-login.html" class="btn-secondary">Войти</a>
+                    <a href="capybara-register.html" class="btn-primary">Зарегистрироваться</a>
+                </div>
+                <div id="auth-user" style="display: none;">
+                    <span class="user-greeting">Привет, <strong id="user-name"></strong>!</span>
+                    <a href="capybara-profile.html" class="btn-secondary">Профиль</a>
+                    <button onclick="logout()" class="btn-logout">Выход</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Заголовок страницы -->
+        <section class="page-header">
+            <h1>О капибарах 🐹</h1>
+            <p>Познакомьтесь с самыми дружелюбными животными на планете</p>
+        </section>
+
+        <div class="container">
+            <!-- Факты -->
+            <section class="facts-section">
+                <h2>Интересные факты</h2>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <h3>🏠 Где живут?</h3>
+                        <p>Капибары обитают в Южной Америке, предпочитая жить рядом с водой. Они часто встречаются около озер, рек, болот и водохранилищ в Венесуэле, Бразилии, Колумбии и других странах.</p>
+                    </div>
+                    <div class="fact-card">
+                        <h3>📏 Размер</h3>
+                        <p>Капибара - самый крупный живой грызун на планете. Взрослая особь весит 35-65 кг и достигает длины 1-1.3 метров. Это примерно размер овцы!</p>
+                    </div>
+                    <div class="fact-card">
+                        <h3>🤝 Социальные</h3>
+                        <p>Капибары - очень социальные животные. Они живут группами от 10 до 100 особей. В группе все помогают друг другу и даже воспитывают детенышей вместе.</p>
+                    </div>
+                    <div class="fact-card">
+                        <h3>🏊 Пловцы</h3>
+                        <p>Капибары отличные пловцы! У них есть перепончатые лапы, которые помогают им быстро плавать. Они могут оставаться под водой до 5 минут.</p>
+                    </div>
+                    <div class="fact-card">
+                        <h3>🌾 Чем питаются?</h3>
+                        <p>Капибары - травоядные. Они едят траву, водные растения и кору. Взрослая капибара съедает около 3.5 кг растительности в день!</p>
+                    </div>
+                    <div class="fact-card">
+                        <h3>😊 Характер</h3>
+                        <p>Капибары известны своим спокойным и дружелюбным характером. Они редко проявляют агрессию и с удовольствием общаются с другими животными и людьми.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Галерея -->
+            <section class="gallery-section">
+                <h2>Галерея капибар</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">🐹</div>
+                    <div class="gallery-item">🌊</div>
+                    <div class="gallery-item">🌿</div>
+                    <div class="gallery-item">👨‍👩‍👧‍👦</div>
+                    <div class="gallery-item">🌅</div>
+                    <div class="gallery-item">💚</div>
+                </div>
+            </section>
+
+            <!-- Комментарии -->
+            <section class="comments-section" id="comments-section">
+                <h2>💬 Комментарии</h2>
+
+                <!-- Форма для нового комментария -->
+                <div id="comment-form-container">
+                    <div class="comment-form" id="comment-form" style="display: none;">
+                        <div>
+                            <textarea id="comment-text" placeholder="Поделитесь своим мнением о капибарах..." maxlength="500"></textarea>
+                            <div class="form-controls">
+                                <span id="char-count">0/500</span>
+                                <button onclick="submitComment('about')" class="btn-primary">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="login-prompt" style="display: none; background: #f9f7f4; padding: 20px; border-radius: 12px; text-align: center; color: #666;">
+                        <p>Пожалуйста, <a href="capybara-login.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">войдите</a> или <a href="capybara-register.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">зарегистрируйтесь</a>, чтобы оставлять комментарии.</p>
+                    </div>
+                </div>
+
+                <!-- Список комментариев -->
+                <div class="comments-list" id="comments-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h4>О нас</h4>
+                <p>Сообщество любителей капибар - место, где встречаются единомышленники.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Ссылки</h4>
+                <ul>
+                    <li><a href="capybara-community.html" style="color: white; text-decoration: none;">Главная</a></li>
+                    <li><a href="capybara-about.html" style="color: white; text-decoration: none;">О капибарах</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p>Свяжитесь с нами для вопросов!</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Капибара Сообщество. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script src="capybara-script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthUI();
+            loadComments('about');
+            
+            const commentText = document.getElementById('comment-text');
+            if (commentText) {
+                commentText.addEventListener('input', function() {
+                    document.getElementById('char-count').textContent = this.value.length + '/500';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
