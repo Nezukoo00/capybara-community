@@ -368,6 +368,71 @@
             word-wrap: break-word;
         }
 
+        /* Gallery */
+        .gallery-section {
+            padding: calc(var(--spacing-unit) * 12) 0;
+            background: white;
+        }
+
+        .gallery-section h2 {
+            font-size: 28px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            aspect-ratio: 1;
+            background: var(--accent-color);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
         /* Футер */
         .footer {
             background: #3a3a3a;
@@ -476,6 +541,62 @@
                 <div class="intro-content">
                     <h2>О нашем сообществе</h2>
                     <p>Капибара - самый дружелюбный и спокойный грызун в мире. На этом сайте вы можете делиться своей любовью к этим замечательным животным, смотреть фотографии, читать интересные факты и общаться с другими поклонниками капибар. Присоединяйтесь к нашему растущему сообществу!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Галерея капибар -->
+        <section class="gallery-section">
+            <div class="container">
+                <h2>🖼️ Галерея капибар</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=400&h=400&fit=crop" alt="Капибара в воде">
+                        <div class="gallery-caption">
+                            <strong>Капибара в воде</strong>
+                            <p>Любит плавать и отдыхать</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=400&h=400&fit=crop" alt="Капибара на траве">
+                        <div class="gallery-caption">
+                            <strong>Капибара на траве</strong>
+                            <p>Травоядное животное</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop" alt="Портрет капибары">
+                        <div class="gallery-caption">
+                            <strong>Портрет капибары</strong>
+                            <p>Дружелюбное животное</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1610768764270-d4a2e9c4d10f?w=400&h=400&fit=crop" alt="Капибара в стаде">
+                        <div class="gallery-caption">
+                            <strong>Капибара в группе</strong>
+                            <p>Социальные животные</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1576505016048-940f5aeb799a?w=400&h=400&fit=crop" alt="Капибара ест">
+                        <div class="gallery-caption">
+                            <strong>Капибара ест траву</strong>
+                            <p>Едят по 3.5 кг травы в день</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1550258987-920a2eae7d59?w=400&h=400&fit=crop" alt="Капибара отдыхает">
+                        <div class="gallery-caption">
+                            <strong>Капибара отдыхает</strong>
+                            <p>До 16 часов отдыхают в день</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
