@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐹 Capybara Community - Сообщество любителей капибар</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8b7355;
+            --secondary: #d4a574;
+            --accent: #f5deb3;
+            --dark: #5a4a3a;
+            --light: #faf8f3;
+            --error: #f44336;
+            --success: #4caf50;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5e6d3 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            animation: slideDown 0.6s ease;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #c9945f;
+            transform: scale(1.05);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Auth Section */
+        .auth-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .auth-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-radius: 12px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-direction: column;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">🏠 Главная</a></li>
+            <li><a href="capybara-community.html">🐹 Сообщество</a></li>
+            <li><a href="capybara-about.html">ℹ️ О капибарах</a></li>
+            <li><a href="capybara-profile.html" id="navProfile" style="display:none;">👤 Профиль</a></li>
+            <li><a href="capybara-login.html" id="navLogin">🔓 Вход</a></li>
+            <li><a href="capybara-register.html" id="navRegister">✍️ Регистрация</a></li>
+            <li><a href="#" id="navLogout" onclick="logout(); return false;" style="display:none;">🚪 Выход</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container fade-in">
+        <!-- Header -->
+        <div class="header" id="home">
+            <h1>🐹 Capybara Community</h1>
+            <p>Добро пожаловать в сообщество любителей капибар!</p>
+            <div class="status-badge">✅ Production Ready</div>
+        </div>
+
+        <!-- Introduction -->
+        <div class="content">
+            <div class="card">
+                <h2>🌟 О проекте</h2>
+                <p>Полнофункциональное веб-сообщество для любителей капибар. Здесь вы можете регистрироваться, общаться и делиться своей любовью к этим прекрасным животным.</p>
+                <p><strong>Статус:</strong> Полностью готов к использованию!</p>
+            </div>
+
+            <div class="card">
+                <h2>🎯 Возможности</h2>
+                <ul style="margin-left: 1.5rem;">
+                    <li>👤 Система регистрации и авторизации</li>
+                    <li>💬 Публикация комментариев</li>
+                    <li>👥 Профили пользователей</li>
+                    <li>🔒 Безопасность и защита данных</li>
+                    <li>📱 Адаптивный дизайн</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>🚀 Быстрый старт</h2>
+                <p>Выберите действие:</p>
+                <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="capybara-community.html" class="btn btn-primary">Перейти в сообщество</a>
+                    <a href="capybara-about.html" class="btn btn-secondary">Узнать о капибарах</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <h2 style="color: var(--primary); margin: 2rem 0 1rem 0; text-align: center;">✨ Основные функции</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">👤</div>
+                <h3>Аккаунты</h3>
+                <p>Создайте личный аккаунт с уникальным именем и email</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">💬</div>
+                <h3>Комментарии</h3>
+                <p>Делитесь своими мыслями и идеями с сообществом</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>Безопасность</h3>
+                <p>Ваши данные защищены и хранятся безопасно</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <h3>Адаптивность</h3>
+                <p>Работает на всех устройствах: ПК, планшет, телефон</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Быстро</h3>
+                <p>Молниеносная загрузка и отзывчивый интерфейс</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🌍</div>
+                <h3>Доступно</h3>
+                <p>Используйте откуда угодно, 24/7</p>
+            </div>
+        </div>
+
+        <!-- Auth Section -->
+        <div class="auth-section">
+            <h2>Готовы присоединиться?</h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Создайте аккаунт или войдите, чтобы начать общение с сообществом капибара-любителей</p>
+            <div class="auth-buttons">
+                <a href="capybara-register.html" class="btn btn-primary">✍️ Зарегистрироваться</a>
+                <a href="capybara-login.html" class="btn btn-secondary">🔓 Войти</a>
+                <a href="capybara-community.html" class="btn btn-primary">🐹 Посмотреть сообщество</a>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="card" style="margin-top: 2rem;">
+            <h2>📚 Документация</h2>
+            <p>Полная документация проекта доступна в файлах:</p>
+            <ul style="margin: 1rem 0 0 1.5rem; color: #666;">
+                <li><strong>README.md</strong> - Основная информация</li>
+                <li><strong>DOCUMENTATION.md</strong> - Техническая документация</li>
+                <li><strong>QUICK_START.md</strong> - Быстрый старт</li>
+                <li><strong>FEATURES.md</strong> - Полный список функций</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>🐹 Capybara Community v1.0.0</strong></p>
+        <p>Полнофункциональное веб-сообщество любителей капибар</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">© 2025 Capybara Community | Made with 💚</p>
+    </footer>
+
+    <!-- Script -->
+    <script src="capybara-script.js"></script>
+    <script>
+        // Update navigation based on auth status
+        function updateNavigation() {
+            const isLoggedIn = localStorage.getItem('currentUser') !== null;
+            const login = document.getElementById('navLogin');
+            const register = document.getElementById('navRegister');
+            const profile = document.getElementById('navProfile');
+            const logout = document.getElementById('navLogout');
+
+            if (isLoggedIn) {
+                login.style.display = 'none';
+                register.style.display = 'none';
+                profile.style.display = 'inline-block';
+                logout.style.display = 'inline-block';
+            } else {
+                login.style.display = 'inline-block';
+                register.style.display = 'inline-block';
+                profile.style.display = 'none';
+                logout.style.display = 'none';
+            }
+        }
+
+        // Update on page load
+        document.addEventListener('DOMContentLoaded', updateNavigation);
+    </script>
+</body>
+</html>
+
