@@ -135,6 +135,40 @@ function initComments() {
     }
 }
 
+// ===== МОДЕРАЦИЯ КОММЕНТАРИЕВ =====
+
+// Список запрещённых слов (цензура)
+const bannedWords = [
+    'ругань', 'мат', 'оскорбление', 'спам', 'реклама',
+    'xxx', 'nsfw', 'насилие', 'ненависть', 'дискриминация'
+];
+
+// Функция проверки комментария на нецензурные слова
+function filterBadWords(text) {
+    let filteredText = text;
+    bannedWords.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'gi');
+        filteredText = filteredText.replace(regex, '*'.repeat(word.length));
+    });
+    return filteredText;
+}
+
+// Функция проверки на спам (много символов, много ссылок и т.д.)
+function isSpam(text) {
+    // Проверка на много ссылок
+    const linkCount = (text.match(/https?:\/\/|www\./gi) || []).length;
+    if (linkCount > 2) return true;
+
+    // Проверка на повторяющиеся символы
+    if (/(.)\1{9,}/.test(text)) return true;
+
+    // Проверка на капс (более 70% заглавных букв)
+    const capsRatio = (text.match(/[A-ZА-Я]/g) || []).length / text.length;
+    if (capsRatio > 0.7) return true;
+
+    return false;
+}
+
 // Добавить комментарий
 function submitComment(page = 'home') {
     if (!isLoggedIn()) {
@@ -150,17 +184,27 @@ function submitComment(page = 'home') {
         return;
     }
 
+    // Проверка на спам
+    if (isSpam(text)) {
+        alert('⚠️ Ваш комментарий выглядит как спам. Пожалуйста, измените текст.');
+        return;
+    }
+
     initComments();
     const comments = JSON.parse(localStorage.getItem('comments'));
     const currentUser = getCurrentUser();
+
+    // Фильтрация нецензурных слов
+    let filteredText = filterBadWords(text);
 
     const newComment = {
         id: Date.now().toString(),
         userId: currentUser.id,
         username: currentUser.username,
-        text: text,
+        text: filteredText,
         date: new Date().toISOString(),
-        page: page
+        page: page,
+        isModerated: filteredText !== text // Флаг: был ли отфильтрован текст
     };
 
     comments.push(newComment);
@@ -168,6 +212,13 @@ function submitComment(page = 'home') {
 
     commentText.value = '';
     document.getElementById('char-count').textContent = '0/500';
+
+    // Уведомление если текст был отфильтрован
+    if (newComment.isModerated) {
+        alert('✓ Комментарий добавлен! (Некоторые слова были заменены на *)');
+    } else {
+        alert('✓ Комментарий успешно добавлен!');
+    }
 
     // Перезагрузить комментарии
     loadComments(page);
