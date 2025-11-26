@@ -216,6 +216,152 @@
             color: #555;
         }
 
+        /* Посты */
+        .posts-section {
+            padding: calc(var(--spacing-unit) * 8) 0;
+            background: white;
+        }
+
+        .posts-section h2 {
+            font-size: 28px;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            color: var(--primary-color);
+        }
+
+        .admin-post-form {
+            background: #f9f7f4;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        .admin-post-form input,
+        .admin-post-form textarea {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+
+        .admin-post-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .post-card {
+            background: white;
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .post-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .post-date {
+            color: #999;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 14px;
+            margin: calc(var(--spacing-unit) * 1) 0;
+        }
+
+        .post-content {
+            color: #333;
+            line-height: 1.7;
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        .post-footer {
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: calc(var(--spacing-unit) * 2);
+            padding-top: calc(var(--spacing-unit) * 2);
+            border-top: 1px solid #eee;
+        }
+
+        .post-comments {
+            margin-top: calc(var(--spacing-unit) * 3);
+            padding-top: calc(var(--spacing-unit) * 3);
+            border-top: 1px solid #eee;
+        }
+
+        .post-comment-form {
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        .post-comment-text {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 2);
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            min-height: 80px;
+            resize: vertical;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .post-comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 2);
+        }
+
+        .post-comment {
+            background: #f9f7f4;
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+        }
+
+        .post-comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: calc(var(--spacing-unit) * 1);
+        }
+
+        .post-comment-date {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .post-comment-text {
+            color: #333;
+            margin: 0;
+        }
+
+        .btn-small {
+            padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-small:hover {
+            background: #7a6248;
+        }
+
         /* Комментарии */
         .comments-section {
             padding: calc(var(--spacing-unit) * 12) 0;
@@ -470,6 +616,26 @@
             </div>
         </section>
 
+        <!-- Посты -->
+        <section class="posts-section" id="posts-section">
+            <div class="container">
+                <h2>📰 Посты сообщества</h2>
+
+                <!-- Форма для создания поста (только для админа) -->
+                <div id="admin-post-form-container" style="display: none;">
+                    <div class="admin-post-form">
+                        <h3 style="color: var(--primary-color); margin-top: 0;">Создать новый пост</h3>
+                        <input type="text" id="post-title" placeholder="Название поста" maxlength="100">
+                        <textarea id="post-content" placeholder="Содержание поста..." maxlength="2000"></textarea>
+                        <button onclick="submitPost()" class="btn-primary">Опубликовать пост</button>
+                    </div>
+                </div>
+
+                <!-- Контейнер для постов -->
+                <div id="posts-container"></div>
+            </div>
+        </section>
+
         <!-- Описание сообщества -->
         <section class="intro-section">
             <div class="container">
@@ -523,6 +689,7 @@
             </div>
             <div class="footer-section">
                 <h4>Контакты</h4>
+                <p>📧 <a href="mailto:viktoruapogiba@gmail.com" style="color: var(--secondary-color); text-decoration: none;">viktoruapogiba@gmail.com</a></p>
                 <p>Свяжитесь с нами для вопросов и предложений!</p>
             </div>
         </div>
@@ -537,6 +704,12 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateAuthUI();
             loadComments('home');
+            loadPosts();
+            
+            // Показать форму для создания поста если пользователь админ
+            if (isAdmin()) {
+                document.getElementById('admin-post-form-container').style.display = 'block';
+            }
             
             const commentText = document.getElementById('comment-text');
             if (commentText) {
@@ -545,6 +718,19 @@
                 });
             }
         });
+
+        // Функция для отправки поста (только для админа)
+        function submitPost() {
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+
+            if (createPost(title, content)) {
+                alert('✓ Пост успешно опубликован!');
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-content').value = '';
+                loadPosts();
+            }
+        }
 
         function scrollToComments() {
             if (!isLoggedIn()) {

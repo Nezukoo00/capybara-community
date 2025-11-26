@@ -4,6 +4,19 @@
 function initUsers() {
     if (!localStorage.getItem('users')) {
         localStorage.setItem('users', JSON.stringify([]));
+        
+        // Создаем администратора при первой инициализации
+        const adminUser = {
+            id: 'admin-001',
+            username: '🐹 Админ Капибара',
+            email: 'viktoruapogiba@gmail.com',
+            password: 'admin123', // В реальном приложении использовать хеш!
+            joinDate: new Date().toISOString(),
+            isAdmin: true
+        };
+        
+        const users = [adminUser];
+        localStorage.setItem('users', JSON.stringify(users));
     }
 }
 
@@ -293,6 +306,199 @@ function removeComment(commentId) {
     const comments = JSON.parse(localStorage.getItem('comments'));
     const filtered = comments.filter(c => c.id !== commentId);
     localStorage.setItem('comments', JSON.stringify(filtered));
+}
+
+// ===== УПРАВЛЕНИЕ ПОСТАМИ (для админа) =====
+
+// Инициализация хранилища постов
+function initPosts() {
+    if (!localStorage.getItem('posts')) {
+        localStorage.setItem('posts', JSON.stringify([]));
+    }
+}
+
+// Проверка является ли пользователь администратором
+function isAdmin() {
+    const currentUser = getCurrentUser();
+    return currentUser && currentUser.isAdmin === true;
+}
+
+// Создать новый пост (только для админа)
+function createPost(title, content) {
+    if (!isAdmin()) {
+        alert('❌ Только администратор может создавать посты');
+        return false;
+    }
+
+    if (!title.trim() || !content.trim()) {
+        alert('Пожалуйста, заполните название и содержание поста');
+        return false;
+    }
+
+    initPosts();
+    const posts = JSON.parse(localStorage.getItem('posts'));
+    const currentUser = getCurrentUser();
+
+    const newPost = {
+        id: Date.now().toString(),
+        title: title.trim(),
+        content: filterBadWords(content.trim()),
+        author: currentUser.username,
+        authorId: currentUser.id,
+        createdAt: new Date().toISOString(),
+        commentsCount: 0
+    };
+
+    posts.unshift(newPost); // Новый пост в начало
+    localStorage.setItem('posts', JSON.stringify(posts));
+
+    return true;
+}
+
+// Получить все посты
+function getAllPosts() {
+    initPosts();
+    return JSON.parse(localStorage.getItem('posts'));
+}
+
+// Загрузить посты на страницу
+function loadPosts() {
+    const posts = getAllPosts();
+    const postsContainer = document.getElementById('posts-container');
+
+    if (!postsContainer) return;
+
+    if (posts.length === 0) {
+        postsContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">Пока нет постов</p>';
+        return;
+    }
+
+    postsContainer.innerHTML = posts.map(post => {
+        const createdDate = new Date(post.createdAt).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        return `
+            <div class="post-card">
+                <div class="post-header">
+                    <h3>${escapeHtml(post.title)}</h3>
+                    <span class="post-date">${createdDate}</span>
+                </div>
+                <p class="post-meta">👤 ${escapeHtml(post.author)}</p>
+                <div class="post-content">${escapeHtml(post.content).replace(/\n/g, '<br>')}</div>
+                <div class="post-footer">
+                    <button onclick="togglePostComments('${post.id}')" class="btn-small">💬 Комментарии (${post.commentsCount})</button>
+                </div>
+                <div id="post-comments-${post.id}" class="post-comments" style="display: none;">
+                    <div class="post-comment-form" id="post-comment-form-${post.id}">
+                        <textarea placeholder="Ваш комментарий..." class="post-comment-text" maxlength="500"></textarea>
+                        <button onclick="submitPostComment('${post.id}')" class="btn-small">Отправить</button>
+                    </div>
+                    <div id="post-comments-list-${post.id}" class="post-comments-list"></div>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    // Загрузить комментарии к постам
+    posts.forEach(post => loadPostComments(post.id));
+}
+
+// Переключить видимость комментариев
+function togglePostComments(postId) {
+    const commentsDiv = document.getElementById(`post-comments-${postId}`);
+    if (commentsDiv) {
+        commentsDiv.style.display = commentsDiv.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+// Добавить комментарий к посту
+function submitPostComment(postId) {
+    if (!isLoggedIn()) {
+        alert('Пожалуйста, войдите в аккаунт');
+        return;
+    }
+
+    const textarea = document.querySelector(`#post-comment-form-${postId} .post-comment-text`);
+    const text = textarea.value.trim();
+
+    if (!text) {
+        alert('Пожалуйста, введите текст комментария');
+        return;
+    }
+
+    if (isSpam(text)) {
+        alert('⚠️ Ваш комментарий выглядит как спам');
+        return;
+    }
+
+    const currentUser = getCurrentUser();
+    const posts = getAllPosts();
+    const post = posts.find(p => p.id === postId);
+
+    if (post) {
+        const postComment = {
+            id: Date.now().toString(),
+            postId: postId,
+            username: currentUser.username,
+            userId: currentUser.id,
+            text: filterBadWords(text),
+            createdAt: new Date().toISOString()
+        };
+
+        if (!localStorage.getItem('post-comments')) {
+            localStorage.setItem('post-comments', JSON.stringify([]));
+        }
+
+        const comments = JSON.parse(localStorage.getItem('post-comments'));
+        comments.push(postComment);
+        localStorage.setItem('post-comments', JSON.stringify(comments));
+
+        post.commentsCount = (post.commentsCount || 0) + 1;
+        localStorage.setItem('posts', JSON.stringify(posts));
+
+        textarea.value = '';
+        loadPostComments(postId);
+        loadPosts(); // Обновить счётчик
+    }
+}
+
+// Загрузить комментарии к посту
+function loadPostComments(postId) {
+    const comments = JSON.parse(localStorage.getItem('post-comments') || '[]');
+    const postComments = comments.filter(c => c.postId === postId);
+    const container = document.getElementById(`post-comments-list-${postId}`);
+
+    if (!container) return;
+
+    if (postComments.length === 0) {
+        container.innerHTML = '<p style="color: #999; padding: 1rem;">Нет комментариев</p>';
+        return;
+    }
+
+    container.innerHTML = postComments.map(comment => {
+        const createdDate = new Date(comment.createdAt).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        return `
+            <div class="post-comment">
+                <div class="post-comment-header">
+                    <strong>${escapeHtml(comment.username)}</strong>
+                    <span class="post-comment-date">${createdDate}</span>
+                </div>
+                <p class="post-comment-text">${escapeHtml(comment.text)}</p>
+            </div>
+        `;
+    }).join('');
 }
 
 // Экранирование HTML для безопасности
