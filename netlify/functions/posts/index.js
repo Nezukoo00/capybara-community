@@ -1,4 +1,4 @@
-const { db } = require('../../db/index.ts');
+const { db } = require('../../db');
 const { posts, postComments } = require('../../db/schema.ts');
 const { eq } = require('drizzle-orm');
 

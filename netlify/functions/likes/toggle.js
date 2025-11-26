@@ -1,4 +1,4 @@
-const { db } = require('../../db/index.ts');
+const { db } = require('../../db');
 const { likes } = require('../../db/schema.ts');
 const { eq, and } = require('drizzle-orm');
 

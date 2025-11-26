@@ -1,8 +1,9 @@
 [build]
-command = "echo 'Build complete' && npm install"
+command = "npm install"
 publish = "."
 base = ""
 functions = "netlify/functions"
+ignore = "npm run build"
 
 [build.environment]
 NODE_VERSION = "20.12.2"
