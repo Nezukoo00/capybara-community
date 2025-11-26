@@ -1,17 +1,17 @@
-import { db } from '../../db';
-import { likes } from '../../db/schema';
-import { eq, and } from 'drizzle-orm';
+const { db } = require('../../db/index.ts');
+const { likes } = require('../../db/schema.ts');
+const { eq, and } = require('drizzle-orm');
 
-export default async (req: Request) => {
-    if (req.method === 'POST') {
+exports.handler = async (req) => {
+    if (req.httpMethod === 'POST') {
         try {
-            const { userId, itemId, itemType } = await req.json();
+            const { userId, itemId, itemType } = JSON.parse(req.body);
 
             if (!userId || !itemId || !itemType) {
-                return new Response(
-                    JSON.stringify({ error: 'Missing required fields' }),
-                    { status: 400 }
-                );
+                return {
+                    statusCode: 400,
+                    body: JSON.stringify({ error: 'Missing required fields' })
+                };
             }
 
             // Проверить, есть ли уже лайк
@@ -39,10 +39,11 @@ export default async (req: Request) => {
                         )
                     );
 
-                return new Response(
-                    JSON.stringify({ success: true, action: 'removed' }),
-                    { status: 200, headers: { 'Content-Type': 'application/json' } }
-                );
+                return {
+                    statusCode: 200,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ success: true, action: 'removed' })
+                };
             } else {
                 // Добавить лайк
                 const newLike = await db
@@ -54,19 +55,23 @@ export default async (req: Request) => {
                     })
                     .returning();
 
-                return new Response(
-                    JSON.stringify({ success: true, action: 'added', data: newLike[0] }),
-                    { status: 201, headers: { 'Content-Type': 'application/json' } }
-                );
+                return {
+                    statusCode: 201,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ success: true, action: 'added', data: newLike[0] })
+                };
             }
         } catch (error) {
             console.error('Toggle like error:', error);
-            return new Response(
-                JSON.stringify({ error: 'Failed to toggle like' }),
-                { status: 500 }
-            );
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ error: 'Failed to toggle like' })
+            };
         }
     }
 
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
+    return {
+        statusCode: 405,
+        body: JSON.stringify({ error: 'Method not allowed' })
+    };
 };
