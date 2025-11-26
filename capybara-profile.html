@@ -404,6 +404,7 @@
     <script src="capybara-script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            initLikes();
             if (!isLoggedIn()) {
                 window.location.href = 'capybara-login.html';
                 return;

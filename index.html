@@ -475,7 +475,10 @@
         }
 
         // Update on page load
-        document.addEventListener('DOMContentLoaded', updateNavigation);
+        document.addEventListener('DOMContentLoaded', function() {
+            initLikes();
+            updateNavigation();
+        });
     </script>
 </body>
 </html>

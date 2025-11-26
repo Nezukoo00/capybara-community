@@ -1,3 +1,71 @@
+// ===== УПРАВЛЕНИЕ ЛАЙКАМИ =====
+
+// Инициализация хранилища лайков
+function initLikes() {
+    if (!localStorage.getItem('likes')) {
+        localStorage.setItem('likes', JSON.stringify({
+            comments: {},    // commentId -> [userId1, userId2, ...]
+            postComments: {}, // postCommentId -> [userId1, userId2, ...]
+            posts: {}         // postId -> [userId1, userId2, ...]
+        }));
+    }
+}
+
+// Добавить или удалить лайк
+function toggleLike(itemId, type) {
+    if (!isLoggedIn()) {
+        alert('Пожалуйста, войдите в аккаунт');
+        return;
+    }
+
+    initLikes();
+    const likes = JSON.parse(localStorage.getItem('likes'));
+    const currentUser = getCurrentUser();
+    const category = type === 'comment' ? 'comments' : type === 'postComment' ? 'postComments' : 'posts';
+
+    if (!likes[category][itemId]) {
+        likes[category][itemId] = [];
+    }
+
+    const userIndex = likes[category][itemId].indexOf(currentUser.id);
+    if (userIndex > -1) {
+        likes[category][itemId].splice(userIndex, 1); // Удалить лайк
+    } else {
+        likes[category][itemId].push(currentUser.id); // Добавить лайк
+    }
+
+    localStorage.setItem('likes', JSON.stringify(likes));
+    
+    // Обновить UI
+    if (type === 'comment') {
+        loadComments(document.body.dataset.currentPage || 'home');
+    } else if (type === 'postComment') {
+        const postId = document.getElementById(`like-btn-${itemId}`)?.dataset.postId;
+        if (postId) loadPostComments(postId);
+    } else if (type === 'post') {
+        loadPosts();
+    }
+}
+
+// Получить количество лайков
+function getLikeCount(itemId, type) {
+    initLikes();
+    const likes = JSON.parse(localStorage.getItem('likes'));
+    const category = type === 'comment' ? 'comments' : type === 'postComment' ? 'postComments' : 'posts';
+    return likes[category][itemId]?.length || 0;
+}
+
+// Проверить, лайкнул ли текущий пользователь
+function userHasLiked(itemId, type) {
+    if (!isLoggedIn()) return false;
+    
+    initLikes();
+    const likes = JSON.parse(localStorage.getItem('likes'));
+    const currentUser = getCurrentUser();
+    const category = type === 'comment' ? 'comments' : type === 'postComment' ? 'postComments' : 'posts';
+    return likes[category][itemId]?.includes(currentUser.id) || false;
+}
+
 // ===== УПРАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯМИ =====
 
 // Инициализация хранилища пользователей
@@ -271,6 +339,8 @@ function loadComments(page = 'home') {
             hour: '2-digit',
             minute: '2-digit'
         });
+        const likeCount = getLikeCount(comment.id, 'comment');
+        const userLiked = userHasLiked(comment.id, 'comment');
 
         return `
             <div class="comment-card">
@@ -285,6 +355,11 @@ function loadComments(page = 'home') {
                     ${isOwner ? `<button class="comment-delete" onclick="deleteComment('${comment.id}', '${page}')">Удалить</button>` : ''}
                 </div>
                 <div class="comment-text">${escapeHtml(comment.text)}</div>
+                <div class="comment-footer">
+                    <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike('${comment.id}', 'comment')" title="Нравится">
+                        🐹 ${likeCount}
+                    </button>
+                </div>
             </div>
         `;
     }).join('');
@@ -381,6 +456,8 @@ function loadPosts() {
             hour: '2-digit',
             minute: '2-digit'
         });
+        const likeCount = getLikeCount(post.id, 'post');
+        const userLiked = userHasLiked(post.id, 'post');
 
         return `
             <div class="post-card">
@@ -391,7 +468,12 @@ function loadPosts() {
                 <p class="post-meta">👤 ${escapeHtml(post.author)}</p>
                 <div class="post-content">${escapeHtml(post.content).replace(/\n/g, '<br>')}</div>
                 <div class="post-footer">
-                    <button onclick="togglePostComments('${post.id}')" class="btn-small">💬 Комментарии (${post.commentsCount})</button>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike('${post.id}', 'post')" title="Нравится">
+                            🐹 ${likeCount}
+                        </button>
+                        <button onclick="togglePostComments('${post.id}')" class="btn-small">💬 Комментарии (${post.commentsCount})</button>
+                    </div>
                 </div>
                 <div id="post-comments-${post.id}" class="post-comments" style="display: none;">
                     <div class="post-comment-form" id="post-comment-form-${post.id}">
@@ -488,6 +570,8 @@ function loadPostComments(postId) {
             hour: '2-digit',
             minute: '2-digit'
         });
+        const likeCount = getLikeCount(comment.id, 'postComment');
+        const userLiked = userHasLiked(comment.id, 'postComment');
 
         return `
             <div class="post-comment">
@@ -496,6 +580,11 @@ function loadPostComments(postId) {
                     <span class="post-comment-date">${createdDate}</span>
                 </div>
                 <p class="post-comment-text">${escapeHtml(comment.text)}</p>
+                <div class="post-comment-footer">
+                    <button class="like-btn ${userLiked ? 'liked' : ''}" onclick="toggleLike('${comment.id}', 'postComment')" data-post-id="${comment.postId}" title="Нравится">
+                        🐹 ${likeCount}
+                    </button>
+                </div>
             </div>
         `;
     }).join('');
